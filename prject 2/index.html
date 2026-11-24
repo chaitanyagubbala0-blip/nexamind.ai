@@ -1,0 +1,2942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexaMind AI // Autonomous Neural Intelligence & High-Velocity Inference</title>
+  <meta name="description" content="NexaMind AI delivers sub-20ms multi-modal neural intelligence, autonomous agent orchestration, and enterprise zero-trust cognitive compute.">
+  <meta name="theme-color" content="#030308">
+
+  <!-- Google Fonts: Outfit (Display), Inter (Body), JetBrains Mono (Telemetry/Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & SYSTEM VARIABLES
+       ========================================================================== */
+    :root {
+      /* Layered Deep-Space Surfaces */
+      --color-void: #030308;
+      --color-surface-subtle: #080914;
+      --surface-glass-base: rgba(13, 15, 28, 0.65);
+      --surface-glass-hover: rgba(22, 26, 46, 0.8);
+      --surface-glass-active: rgba(30, 36, 64, 0.9);
+      --surface-glass-border: rgba(255, 255, 255, 0.08);
+      --surface-glass-border-hover: rgba(255, 255, 255, 0.16);
+      --surface-card-subtle: rgba(16, 19, 36, 0.5);
+
+      /* Specular Light-Catch Micro-Highlights */
+      --specular-top: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      --specular-card: inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      --specular-glow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+
+      /* Luminous Palette */
+      --color-text-white: #F8FAFC;
+      --color-text-slate: #94A3B8;
+      --color-text-dim: #64748B;
+      --color-indigo: #6366F1;
+      --color-indigo-light: #818CF8;
+      --color-indigo-glow: rgba(99, 102, 241, 0.35);
+      --color-indigo-subtle: rgba(99, 102, 241, 0.12);
+      --color-teal: #14B8A6;
+      --color-teal-light: #2DD4BF;
+      --color-teal-glow: rgba(20, 184, 166, 0.35);
+      --color-teal-subtle: rgba(20, 184, 166, 0.12);
+      --color-emerald-live: #10B981;
+      --color-rose-alert: #F43F5E;
+
+      /* Gradients */
+      --grad-brand-glow: linear-gradient(135deg, #6366F1 0%, #14B8A6 100%);
+      --grad-brand-subtle: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(20, 184, 166, 0.15) 100%);
+      --grad-text-shimmer: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #94A3B8 100%);
+      --grad-text-color: linear-gradient(135deg, #FFFFFF 20%, #A5B4FC 60%, #5EEAD4 100%);
+
+      /* Typography */
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      /* Spatial Rhythm (8-Point Grid) */
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+      --space-128: 128px;
+
+      /* Container & Heights */
+      --container-max: 1240px;
+      --header-height: 72px;
+
+      /* Motion Choreography */
+      --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+      --transition-fast: 160ms var(--ease-spring);
+      --transition-base: 320ms var(--ease-spring);
+      --transition-slow: 650ms var(--ease-spring);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 24px);
+      background-color: var(--color-void);
+      color: var(--color-text-white);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--color-void);
+      color: var(--color-text-slate);
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    /* Spatial Backdrop: Subtle Micro-Grid with Radial Edge Masking */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black 20%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Tabular figures for telemetry & numbers */
+    .tabular-num,
+    .badge-mono,
+    .metric-value,
+    .telemetry-code,
+    .timestamp,
+    .stat-figure {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Selection */
+    ::selection {
+      background-color: var(--color-indigo);
+      color: #FFFFFF;
+    }
+
+    /* Focus-Visible Outline */
+    :focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 3px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--color-text-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    h1 {
+      letter-spacing: -0.035em;
+    }
+
+    h2 {
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--color-text-slate);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    input, textarea, button {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    /* Container Utility */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--space-24);
+      padding-right: var(--space-24);
+      position: relative;
+      z-index: 1;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       3. KEYFRAME ANIMATIONS & MOTION
+       ========================================================================== */
+    /* Organic Dual Aurora Orbital Drift */
+    @keyframes aurora-orbit-indigo {
+      0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      33% {
+        transform: translate(80px, -60px) scale(1.18) rotate(45deg);
+      }
+      66% {
+        transform: translate(-50px, 40px) scale(0.92) rotate(90deg);
+      }
+      100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes aurora-orbit-teal {
+      0% {
+        transform: translate(0, 0) scale(1.1) rotate(0deg);
+      }
+      33% {
+        transform: translate(-70px, 50px) scale(0.88) rotate(-40deg);
+      }
+      66% {
+        transform: translate(60px, -30px) scale(1.15) rotate(-80deg);
+      }
+      100% {
+        transform: translate(0, 0) scale(1.1) rotate(0deg);
+      }
+    }
+
+    /* Staggered Hero Entrance */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Beacon Pulse */
+    @keyframes beacon-ping {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.45);
+        opacity: 0.45;
+      }
+    }
+
+    /* Infinite Marquee Loop */
+    @keyframes marquee-scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Tensor Audio/Data Waveform Pulse */
+    @keyframes waveBarPulse {
+      0%, 100% {
+        transform: scaleY(0.2);
+        opacity: 0.4;
+      }
+      50% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+
+    /* Radar Sweep Animation */
+    @keyframes radarSweep {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Dynamic Border-Beam Rotation */
+    @keyframes borderBeamSpin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Shimmering Button Shine Sweep */
+    @keyframes buttonShine {
+      0% {
+        left: -120%;
+      }
+      100% {
+        left: 220%;
+      }
+    }
+
+    /* Blip Pulse */
+    @keyframes blipPulse {
+      0%, 100% {
+        transform: scale(0.85);
+        opacity: 0.4;
+      }
+      50% {
+        transform: scale(1.25);
+        opacity: 1;
+      }
+    }
+
+    /* Respect User Accessibility Preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ==========================================================================
+       4. LAYOUT & UTILITIES
+       ========================================================================== */
+    .section-wrap {
+      padding-top: var(--space-96);
+      padding-bottom: var(--space-96);
+      position: relative;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin: 0 auto var(--space-64) auto;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+      color: var(--color-text-white);
+      margin-bottom: var(--space-16);
+      line-height: 1.12;
+    }
+
+    .section-subtitle {
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
+      color: var(--color-text-slate);
+      line-height: 1.7;
+    }
+
+    /* Gradient Text Utilities */
+    .text-gradient {
+      background: var(--grad-text-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .text-indigo { color: var(--color-indigo-light); }
+    .text-teal { color: var(--color-teal-light); }
+    .text-emerald { color: var(--color-emerald-live); }
+
+    /* Telemetry Tag Pill */
+    .telemetry-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      box-shadow: var(--specular-top);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--color-indigo-light);
+      text-transform: uppercase;
+      margin-bottom: var(--space-16);
+    }
+
+    .pill-beacon {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--color-teal);
+      box-shadow: 0 0 10px var(--color-teal);
+      animation: beacon-ping 2s infinite var(--ease-spring);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-12);
+      font-family: var(--font-display);
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: all var(--transition-base);
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-sm {
+      padding: 8px 18px;
+      font-size: 0.8125rem;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-md {
+      padding: 13px 26px;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-lg {
+      padding: 16px 36px;
+      font-size: 1.0625rem;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* Primary Luminous Button with Shine Sweep */
+    .btn-primary {
+      background: var(--grad-brand-glow);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 28px -6px var(--color-indigo-glow);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: skewX(-20deg);
+      transition: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 14px 36px -6px var(--color-indigo-glow), 0 0 30px var(--color-teal-glow);
+    }
+
+    .btn-primary:hover::before {
+      animation: buttonShine 1.1s var(--ease-spring);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* Ghost Glass Button */
+    .btn-ghost {
+      background-color: var(--surface-glass-base);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--color-text-white);
+      border-color: var(--surface-glass-border);
+      box-shadow: var(--specular-top);
+    }
+
+    .btn-ghost:hover {
+      background-color: var(--surface-glass-hover);
+      border-color: var(--surface-glass-border-hover);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost:active {
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       5. COMPONENTS & MICRO-INTERACTIONS
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       5.1 FLOATING GLASSMORHPIC NAVBAR
+       -------------------------------------------------------------------------- */
+    .site-nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      background-color: rgba(3, 3, 8, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--surface-glass-border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    /* Brand Logo Lockup */
+    .brand-logo-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(20, 184, 166, 0.25) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: var(--specular-top);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-text-white);
+    }
+
+    .brand-title span {
+      background: var(--grad-brand-glow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Desktop Navigation Menu */
+    .desktop-nav {
+      display: none;
+    }
+
+    @media (min-width: 960px) {
+      .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: var(--space-32);
+      }
+    }
+
+    .nav-link-item {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-slate);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link-item::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--grad-brand-glow);
+      border-radius: 2px;
+      transition: width var(--transition-base);
+    }
+
+    .nav-link-item:hover {
+      color: var(--color-text-white);
+    }
+
+    .nav-link-item:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    /* CSS-Only Mobile Navigation Drawer (Hidden Checkbox #nav-toggle) */
+    .nav-toggle-checkbox {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    .nav-toggle-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 42px;
+      height: 42px;
+      background: var(--surface-glass-base);
+      border: 1px solid var(--surface-glass-border);
+      box-shadow: var(--specular-top);
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1002;
+      transition: background-color var(--transition-fast);
+    }
+
+    @media (min-width: 960px) {
+      .nav-toggle-btn {
+        display: none;
+      }
+    }
+
+    .nav-toggle-bar {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-text-white);
+      border-radius: 2px;
+      transition: transform var(--transition-base), opacity var(--transition-fast);
+      transform-origin: center;
+    }
+
+    /* Hamburger Morph to X */
+    #nav-toggle:checked ~ .site-nav-wrap .nav-toggle-btn .bar-1 {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    #nav-toggle:checked ~ .site-nav-wrap .nav-toggle-btn .bar-2 {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    #nav-toggle:checked ~ .site-nav-wrap .nav-toggle-btn .bar-3 {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Drawer & Backdrop */
+    .nav-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(3, 3, 8, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-base), visibility var(--transition-base);
+    }
+
+    #nav-toggle:checked ~ .nav-drawer-backdrop {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 380px;
+      height: 100vh;
+      background: #090B16;
+      border-left: 1px solid var(--surface-glass-border);
+      box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-32) var(--space-24);
+      transform: translateX(100%);
+      transition: transform var(--transition-base);
+      overflow-y: auto;
+    }
+
+    #nav-toggle:checked ~ .mobile-drawer {
+      transform: translateX(0);
+    }
+
+    .drawer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-24);
+      border-bottom: 1px solid var(--surface-glass-border);
+      margin-bottom: var(--space-24);
+    }
+
+    .drawer-close-btn {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-text-slate);
+      padding: 4px 8px;
+    }
+
+    .drawer-close-btn:hover {
+      color: var(--color-text-white);
+    }
+
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    .drawer-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+      padding: 14px 16px;
+      border-radius: 10px;
+      color: var(--color-text-white);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      background: transparent;
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .drawer-link:hover {
+      background-color: var(--surface-glass-hover);
+      color: var(--color-teal-light);
+    }
+
+    .drawer-link-idx {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-indigo-light);
+    }
+
+    .drawer-footer {
+      margin-top: auto;
+      padding-top: var(--space-32);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    /* --------------------------------------------------------------------------
+       5.2 CINEMATIC HERO SECTION
+       -------------------------------------------------------------------------- */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      padding-top: calc(var(--header-height) + var(--space-80));
+      padding-bottom: var(--space-96);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Ambient Aurora Engine (Dual Overlapping Heavy Blurred Orbs) */
+    .aurora-engine {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .aurora-orb-indigo {
+      position: absolute;
+      top: 15%;
+      left: 18%;
+      width: 580px;
+      height: 580px;
+      background: radial-gradient(circle at center, rgba(99, 102, 241, 0.28) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
+      filter: blur(100px);
+      border-radius: 50%;
+      animation: aurora-orbit-indigo 20s infinite ease-in-out;
+    }
+
+    .aurora-orb-teal {
+      position: absolute;
+      top: 25%;
+      right: 15%;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle at center, rgba(20, 184, 166, 0.25) 0%, rgba(20, 184, 166, 0.06) 50%, transparent 70%);
+      filter: blur(110px);
+      border-radius: 50%;
+      animation: aurora-orbit-teal 24s infinite ease-in-out;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-64);
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+
+    /* Staggered Hero Entrance Animations */
+    .hero-badge-wrap {
+      animation: fadeUp 0.8s var(--ease-spring) 0.1s both;
+    }
+
+    .hero-title {
+      font-size: clamp(2.75rem, 5.5vw + 0.5rem, 5.25rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: var(--space-24);
+      animation: fadeUp 0.8s var(--ease-spring) 0.25s both;
+    }
+
+    .hero-desc {
+      font-size: clamp(1.0625rem, 1.25vw + 0.1rem, 1.25rem);
+      line-height: 1.7;
+      color: var(--color-text-slate);
+      margin-bottom: var(--space-32);
+      max-width: 580px;
+      animation: fadeUp 0.8s var(--ease-spring) 0.4s both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-16);
+      margin-bottom: var(--space-32);
+      animation: fadeUp 0.8s var(--ease-spring) 0.55s both;
+    }
+
+    .hero-telemetry-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-24);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+      animation: fadeUp 0.8s var(--ease-spring) 0.7s both;
+    }
+
+    .hero-metric-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .hero-metric-item strong {
+      color: var(--color-text-white);
+    }
+
+    .dot-live-green {
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-emerald-live);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--color-emerald-live);
+    }
+
+    /* --------------------------------------------------------------------------
+       5.3 PURE-CSS NEURAL INFERENCE MONITOR (HERO VISUAL)
+       -------------------------------------------------------------------------- */
+    .hero-monitor-card {
+      background: var(--surface-glass-base);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--surface-glass-border);
+      box-shadow: var(--specular-top), var(--specular-glow);
+      border-radius: 20px;
+      padding: var(--space-24);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-20);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.8s var(--ease-spring) 0.75s both;
+      transition: transform var(--transition-base), border-color var(--transition-base);
+    }
+
+    .hero-monitor-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    /* Top Chrome Bar */
+    .monitor-chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-16);
+      border-bottom: 1px solid var(--surface-glass-border);
+    }
+
+    .chrome-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .c-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .c-dot-red { background-color: #EF4444; opacity: 0.8; }
+    .c-dot-yellow { background-color: #F59E0B; opacity: 0.8; }
+    .c-dot-green { background-color: #10B981; opacity: 0.8; }
+
+    .monitor-model-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      color: var(--color-indigo-light);
+    }
+
+    /* Live Inference Terminal Prompt Area */
+    .inference-prompt-box {
+      background: #060710;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: var(--space-16);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+    }
+
+    .prompt-query {
+      color: var(--color-text-dim);
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .prompt-query span {
+      color: var(--color-teal-light);
+    }
+
+    .inference-output-live {
+      color: var(--color-text-white);
+      line-height: 1.5;
+    }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background-color: var(--color-teal);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: beacon-ping 1s infinite step-start;
+    }
+
+    /* Audio/Tensor Waveform Visualizer (16 Pure-CSS Equalizer Bars) */
+    .waveform-visualizer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      background: rgba(99, 102, 241, 0.04);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: 12px;
+      padding: 0 var(--space-16);
+    }
+
+    .waveform-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-indigo-light);
+      font-weight: 600;
+    }
+
+    .bars-cluster {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 36px;
+    }
+
+    .wave-bar {
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--color-teal-light) 0%, var(--color-indigo) 100%);
+      border-radius: 2px;
+      animation: waveBarPulse 1.2s infinite ease-in-out;
+      transform-origin: bottom;
+    }
+
+    .wave-bar:nth-child(1) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(2) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.6s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.8s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.9s; }
+    .wave-bar:nth-child(8) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(9) { animation-delay: 0.75s; }
+    .wave-bar:nth-child(10) { animation-delay: 0.35s; }
+    .wave-bar:nth-child(11) { animation-delay: 0.55s; }
+    .wave-bar:nth-child(12) { animation-delay: 0.25s; }
+    .wave-bar:nth-child(13) { animation-delay: 0.85s; }
+    .wave-bar:nth-child(14) { animation-delay: 0.45s; }
+    .wave-bar:nth-child(15) { animation-delay: 0.65s; }
+    .wave-bar:nth-child(16) { animation-delay: 0.05s; }
+
+    /* Live Telemetry Meters Bottom Grid */
+    .monitor-telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-12);
+    }
+
+    .telemetry-cell {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 10px;
+      padding: var(--space-12);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .telemetry-cell .t-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      color: var(--color-text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    .telemetry-cell .t-val {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-text-white);
+    }
+
+    /* --------------------------------------------------------------------------
+       5.4 EDGE-FADED CAPABILITY MARQUEE
+       -------------------------------------------------------------------------- */
+    .marquee-section {
+      padding: var(--space-24) 0;
+      background: #050610;
+      border-top: 1px solid var(--surface-glass-border);
+      border-bottom: 1px solid var(--surface-glass-border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-mask {
+      display: flex;
+      width: max-content;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: var(--space-48);
+      white-space: nowrap;
+      animation: marquee-scroll 32s linear infinite;
+      padding-right: var(--space-48);
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-12);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-slate);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .marquee-badge {
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--color-indigo-light);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.6875rem;
+    }
+
+    .marquee-dot {
+      color: var(--color-teal);
+      font-size: 1.1rem;
+    }
+
+    /* --------------------------------------------------------------------------
+       5.5 AI PRODUCTS SHOWCASE (3-COLUMN GRID WITH BORDER-BEAM ILLUMINATION)
+       -------------------------------------------------------------------------- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+
+    @media (min-width: 900px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .product-card {
+      background: var(--surface-glass-base);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 20px;
+      padding: var(--space-32);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--specular-top);
+      transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    /* Luminous Animated Border-Sweep Beam on Hover */
+    .product-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, transparent 20%, rgba(99, 102, 241, 0.8) 50%, rgba(20, 184, 166, 0.8) 80%, transparent 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-base);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: var(--specular-top), 0 24px 60px -12px rgba(0, 0, 0, 0.8), 0 0 35px -5px rgba(99, 102, 241, 0.2);
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .product-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-24);
+    }
+
+    .product-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--grad-brand-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--specular-top);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal-light);
+    }
+
+    .product-badge-version {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--color-text-slate);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .product-name {
+      font-size: 1.625rem;
+      margin-bottom: var(--space-12);
+      color: var(--color-text-white);
+    }
+
+    .product-summary {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--color-text-slate);
+      margin-bottom: var(--space-24);
+      flex-grow: 1;
+    }
+
+    .product-features-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      margin-bottom: var(--space-32);
+      border-top: 1px solid var(--surface-glass-border);
+      padding-top: var(--space-24);
+    }
+
+    .product-feature-item {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-10);
+      font-size: 0.875rem;
+      color: var(--color-text-slate);
+    }
+
+    .feature-check {
+      color: var(--color-teal);
+      font-weight: 700;
+    }
+
+    .product-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-indigo-light);
+      margin-top: auto;
+      transition: gap var(--transition-fast), color var(--transition-fast);
+    }
+
+    .product-card:hover .product-card-link {
+      gap: var(--space-12);
+      color: var(--color-teal-light);
+    }
+
+    /* --------------------------------------------------------------------------
+       5.6 ASYMMETRIC BENTO GRID (REAL-WORLD AI APPLICATIONS)
+       -------------------------------------------------------------------------- */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-24);
+    }
+
+    @media (min-width: 768px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .bento-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .bento-card {
+      background: var(--surface-glass-base);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 20px;
+      padding: var(--space-32);
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--specular-top);
+      transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: var(--specular-top), 0 20px 48px -8px rgba(0, 0, 0, 0.6);
+    }
+
+    @media (min-width: 1024px) {
+      .bento-span-2 {
+        grid-column: span 2;
+      }
+    }
+
+    .bento-badge {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--color-teal-light);
+      background: var(--color-teal-subtle);
+      border: 1px solid rgba(20, 184, 166, 0.25);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: var(--space-16);
+      width: fit-content;
+    }
+
+    .bento-title {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-12);
+      color: var(--color-text-white);
+    }
+
+    .bento-desc {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--color-text-slate);
+      margin-bottom: var(--space-24);
+    }
+
+    /* Bento Micro-Visual 1: Healthcare Bio-Signal Radar / Waveform */
+    .bento-visual-box {
+      margin-top: auto;
+      background: #060712;
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 14px;
+      padding: var(--space-20);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    .bio-signal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .bio-metric-val {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-teal-light);
+      font-weight: 600;
+    }
+
+    .bio-wave-svg {
+      width: 100%;
+      height: 48px;
+    }
+
+    .bio-wave-path {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: marquee-scroll 4s infinite linear;
+    }
+
+    /* Bento Micro-Visual 2: Enterprise Automation Node Graph */
+    .node-graph-stage {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: var(--space-16) 0;
+      position: relative;
+    }
+
+    .graph-node {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--surface-glass-hover);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #FFFFFF;
+      box-shadow: 0 0 16px var(--color-indigo-glow);
+      position: relative;
+      z-index: 2;
+    }
+
+    .graph-connector-line {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-indigo) 0%, var(--color-teal) 100%);
+      transform: translateY(-50%);
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    /* Bento Micro-Visual 3: Predictive Analytics Trend Chart */
+    .trend-bars-wrapper {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      height: 80px;
+      padding-top: var(--space-12);
+    }
+
+    .trend-col {
+      flex-grow: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px 4px 0 0;
+      position: relative;
+      overflow: hidden;
+      transition: height var(--transition-base);
+    }
+
+    .trend-col::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--color-teal-light) 0%, var(--color-indigo) 100%);
+      opacity: 0.85;
+    }
+
+    .col-1 { height: 35%; }
+    .col-2 { height: 50%; }
+    .col-3 { height: 42%; }
+    .col-4 { height: 68%; }
+    .col-5 { height: 60%; }
+    .col-6 { height: 85%; }
+    .col-7 { height: 95%; }
+
+    /* Bento Micro-Visual 4: Security Cryptographic Radar Sweep */
+    .radar-scope-mini {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      background: radial-gradient(circle, rgba(20, 184, 166, 0.08) 0%, transparent 70%);
+      overflow: hidden;
+    }
+
+    .radar-sweep-beam {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 55px;
+      height: 55px;
+      transform-origin: 0% 0%;
+      background: conic-gradient(from 0deg, rgba(20, 184, 166, 0.4) 0deg, transparent 60deg);
+      animation: radarSweep 3.5s infinite linear;
+    }
+
+    .radar-target-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--color-teal);
+      box-shadow: 0 0 8px var(--color-teal);
+      animation: blipPulse 1.8s infinite ease-in-out;
+    }
+
+    /* --------------------------------------------------------------------------
+       5.7 TECHNOLOGY & ARCHITECTURE OVERVIEW
+       -------------------------------------------------------------------------- */
+    .architecture-section {
+      background: #04050D;
+    }
+
+    .metrics-bar-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-16);
+      background: var(--surface-glass-base);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 20px;
+      padding: var(--space-32);
+      box-shadow: var(--specular-top);
+      margin-bottom: var(--space-64);
+    }
+
+    @media (min-width: 900px) {
+      .metrics-bar-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-32);
+      }
+    }
+
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .metric-value {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--color-text-white);
+      line-height: 1.1;
+      margin-bottom: var(--space-4);
+    }
+
+    .metric-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-text-white);
+      margin-bottom: 2px;
+    }
+
+    .metric-sub {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    /* 2-Column Architecture Split */
+    .arch-split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+
+    @media (min-width: 900px) {
+      .arch-split-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .arch-card {
+      background: var(--surface-glass-base);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 20px;
+      padding: var(--space-40);
+      box-shadow: var(--specular-top);
+    }
+
+    .arch-card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--color-indigo-light);
+      margin-bottom: var(--space-12);
+    }
+
+    .arch-card-title {
+      font-size: 1.75rem;
+      margin-bottom: var(--space-16);
+      color: var(--color-text-white);
+    }
+
+    .arch-card-body {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-text-slate);
+      margin-bottom: var(--space-24);
+    }
+
+    .spec-table-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      border-top: 1px solid var(--surface-glass-border);
+      padding-top: var(--space-20);
+    }
+
+    .spec-table-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.875rem;
+    }
+
+    .spec-label {
+      color: var(--color-text-dim);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .spec-val {
+      font-weight: 600;
+      color: var(--color-text-white);
+    }
+
+    /* --------------------------------------------------------------------------
+       5.8 LEADERSHIP & RESEARCH TEAM
+       -------------------------------------------------------------------------- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+
+    @media (min-width: 640px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .team-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .team-card {
+      background: var(--surface-glass-base);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--specular-top);
+      transition: transform var(--transition-base), border-color var(--transition-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .team-photo-wrap {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .team-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(85%);
+      transition: filter var(--transition-base), transform var(--transition-base);
+    }
+
+    .team-card:hover .team-photo {
+      filter: grayscale(0%);
+      transform: scale(1.06);
+    }
+
+    .team-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, #0D0F1C 100%);
+    }
+
+    .team-content {
+      padding: var(--space-20);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+    }
+
+    .team-name {
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--color-text-white);
+    }
+
+    .team-role {
+      font-size: 0.8125rem;
+      color: var(--color-teal-light);
+      font-weight: 500;
+      margin-bottom: var(--space-8);
+    }
+
+    .team-bio {
+      font-size: 0.8125rem;
+      color: var(--color-text-slate);
+      line-height: 1.5;
+    }
+
+    .team-social-row {
+      display: flex;
+      gap: var(--space-12);
+      margin-top: var(--space-12);
+    }
+
+    .team-social-link {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--color-text-dim);
+      transition: color var(--transition-fast);
+    }
+
+    .team-social-link:hover {
+      color: var(--color-text-white);
+    }
+
+    /* --------------------------------------------------------------------------
+       5.9 SPLIT CONTACT & ENTERPRISE INQUIRY SECTION
+       -------------------------------------------------------------------------- */
+    .contact-split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-48);
+      align-items: center;
+    }
+
+    @media (min-width: 992px) {
+      .contact-split-grid {
+        grid-template-columns: 1fr 1.15fr;
+      }
+    }
+
+    /* Left Telemetry Column */
+    .contact-telemetry-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-32);
+    }
+
+    .telemetry-office-card {
+      background: var(--surface-glass-base);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 16px;
+      padding: var(--space-24);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+      box-shadow: var(--specular-top);
+    }
+
+    .office-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding-bottom: var(--space-8);
+      font-size: 0.875rem;
+    }
+
+    .office-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .office-k {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+    }
+
+    .office-v {
+      font-weight: 600;
+      color: var(--color-text-white);
+    }
+
+    .response-sla-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-emerald-live);
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    /* Right Glassmorphic Form Card */
+    .contact-form-card {
+      background: var(--surface-glass-base);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 20px;
+      padding: var(--space-40);
+      box-shadow: var(--specular-top), var(--specular-glow);
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-8);
+      color: var(--color-text-white);
+    }
+
+    .form-subtitle {
+      font-size: 0.875rem;
+      color: var(--color-text-slate);
+      margin-bottom: var(--space-24);
+    }
+
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-20);
+    }
+
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-16);
+    }
+
+    @media (min-width: 640px) {
+      .form-row-2col {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-slate);
+      letter-spacing: 0.04em;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      background: rgba(6, 7, 16, 0.85);
+      border: 1px solid var(--surface-glass-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--color-text-white);
+      font-size: 0.9375rem;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--color-teal);
+      box-shadow: 0 0 0 3px var(--color-teal-glow), inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-select option {
+      background-color: #090B16;
+      color: #FFFFFF;
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-dim);
+      text-align: center;
+    }
+
+    /* --------------------------------------------------------------------------
+       5.10 MINIMALIST FOOTER
+       -------------------------------------------------------------------------- */
+    .site-footer {
+      background-color: #020205;
+      border-top: 1px solid var(--surface-glass-border);
+      padding-top: var(--space-80);
+      padding-bottom: var(--space-48);
+    }
+
+    .footer-top-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-48);
+      margin-bottom: var(--space-64);
+    }
+
+    @media (min-width: 640px) {
+      .footer-top-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer-top-grid {
+        grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      }
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .footer-desc {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--color-text-slate);
+      max-width: 320px;
+    }
+
+    .footer-col-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-text-white);
+      margin-bottom: var(--space-16);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-links-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-10);
+    }
+
+    .footer-link {
+      font-size: 0.875rem;
+      color: var(--color-text-slate);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-link:hover {
+      color: var(--color-teal-light);
+    }
+
+    .footer-status-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-emerald-live);
+      width: fit-content;
+    }
+
+    .footer-bottom-bar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--surface-glass-border);
+      padding-top: var(--space-32);
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom-bar {
+        flex-direction: row;
+      }
+    }
+
+    .copyright-text {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    .footer-cert-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+    }
+
+    .cert-pill {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      color: var(--color-text-dim);
+      border: 1px solid var(--surface-glass-border);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       6. RESPONSIVE BREAKPOINTS & ACCESSIBILITY
+       ========================================================================== */
+    @media (max-width: 639px) {
+      .section-wrap {
+        padding-top: var(--space-64);
+        padding-bottom: var(--space-64);
+      }
+
+      .hero-section {
+        padding-top: calc(var(--header-height) + var(--space-48));
+        padding-bottom: var(--space-64);
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-ctas .btn {
+        width: 100%;
+      }
+
+      .contact-form-card {
+        padding: var(--space-24);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PURE CSS MOBILE NAVIGATION CONTROLLER (#nav-toggle) -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox" aria-label="Toggle navigation drawer">
+
+  <!-- =========================================================================
+       1. FLOATING GLASSMORHPIC NAVBAR
+       ========================================================================= -->
+  <header class="site-nav-wrap">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo Lockup -->
+      <a href="#hero" class="brand-logo-link" aria-label="NexaMind AI Home">
+        <div class="brand-mark">
+          <!-- Geometric Vector Inline SVG Logo -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="#14B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="brand-title">NexaMind<span>.AI</span></span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="#products" class="nav-link-item">Products</a>
+        <a href="#applications" class="nav-link-item">Applications</a>
+        <a href="#architecture" class="nav-link-item">Architecture</a>
+        <a href="#research" class="nav-link-item">Research Team</a>
+        <a href="#contact" class="nav-link-item">Enterprise</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-sm">
+          <span>Request Access</span>
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <!-- CSS-Only Hamburger Trigger Button -->
+        <label for="nav-toggle" class="nav-toggle-btn" aria-label="Open mobile menu">
+          <span class="nav-toggle-bar bar-1"></span>
+          <span class="nav-toggle-bar bar-2"></span>
+          <span class="nav-toggle-bar bar-3"></span>
+        </label>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Backdrop & Drawer (Pure CSS controlled by #nav-toggle:checked) -->
+  <label for="nav-toggle" class="nav-drawer-backdrop" aria-label="Close mobile navigation"></label>
+  <aside class="mobile-drawer" aria-label="Mobile Navigation Drawer">
+    <div class="drawer-top">
+      <div class="brand-logo-link">
+        <div class="brand-mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#F8FAFC" stroke-width="2"/>
+            <path d="M2 17L12 22L22 17" stroke="#14B8A6" stroke-width="2"/>
+            <path d="M2 12L12 17L22 12" stroke="#6366F1" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="brand-title">NexaMind<span>.AI</span></span>
+      </div>
+      <label for="nav-toggle" class="drawer-close-btn" aria-label="Close menu">✕</label>
+    </div>
+
+    <nav class="drawer-links">
+      <a href="#hero" class="drawer-link"><span class="drawer-link-idx">01</span> Overview</a>
+      <a href="#products" class="drawer-link"><span class="drawer-link-idx">02</span> Neural Products</a>
+      <a href="#applications" class="drawer-link"><span class="drawer-link-idx">03</span> Enterprise Bento</a>
+      <a href="#architecture" class="drawer-link"><span class="drawer-link-idx">04</span> Compute Architecture</a>
+      <a href="#research" class="drawer-link"><span class="drawer-link-idx">05</span> Research Leadership</a>
+      <a href="#contact" class="drawer-link"><span class="drawer-link-idx">06</span> Enterprise Inquiry</a>
+    </nav>
+
+    <div class="drawer-footer">
+      <a href="#contact" class="btn btn-primary btn-block">
+        <span>Request Private Beta</span>
+        <span>→</span>
+      </a>
+      <div class="telemetry-pill text-center" style="margin: 0 auto;">
+        <span class="pill-beacon"></span>
+        <span>v4.2 NEURAL CLUSTER ONLINE</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================= -->
+  <main id="main-content">
+
+    <!-- =======================================================================
+         2. CINEMATIC HERO SECTION
+         ======================================================================= -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-heading">
+      <!-- Ambient Aurora Engine (Dual Floating Orbs) -->
+      <div class="aurora-engine" aria-hidden="true">
+        <div class="aurora-orb-indigo"></div>
+        <div class="aurora-orb-teal"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Copy Stack -->
+          <div class="hero-copy-col">
+            <!-- Telemetry Status Pill -->
+            <div class="hero-badge-wrap">
+              <div class="telemetry-pill">
+                <span class="pill-beacon"></span>
+                <span>NexaMind 4.0 Neural Core Live</span>
+              </div>
+            </div>
+
+            <!-- Display Headline -->
+            <h1 id="hero-heading" class="hero-title">
+              Autonomous Intelligence. <br>
+              <span class="text-gradient">Sub-20ms Velocity.</span>
+            </h1>
+
+            <!-- Positioning Copy -->
+            <p class="hero-desc">
+              Pioneering distributed neural computing with zero-trust cognitive architecture. NexaMind powers next-generation multimodal reasoning and self-healing autonomous agents for high-stakes enterprise systems.
+            </p>
+
+            <!-- Dual Luminous CTAs -->
+            <div class="hero-ctas">
+              <a href="#contact" class="btn btn-primary btn-lg">
+                <span>Deploy Neural Core</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href="#architecture" class="btn btn-ghost btn-lg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Explore Architecture</span>
+              </a>
+            </div>
+
+            <!-- Hardware Telemetry Metric Strip -->
+            <div class="hero-telemetry-metrics">
+              <div class="hero-metric-item">
+                <span class="dot-live-green"></span>
+                <span>INFERENCE LATENCY: <strong>14.2ms</strong></span>
+              </div>
+              <div class="hero-metric-item">
+                <span>•</span>
+                <span>CONTEXT WINDOW: <strong>2.0M TOKENS</strong></span>
+              </div>
+              <div class="hero-metric-item">
+                <span>•</span>
+                <span>SECURITY: <strong>SOC2 TYPE II</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pure-CSS Live Inference Monitor Visual -->
+          <div class="hero-visual-col">
+            <div class="hero-monitor-card" aria-label="Live Neural Inference Monitor Visual">
+              
+              <!-- Chrome Bar -->
+              <div class="monitor-chrome">
+                <div class="chrome-dots">
+                  <span class="c-dot c-dot-red"></span>
+                  <span class="c-dot c-dot-yellow"></span>
+                  <span class="c-dot c-dot-green"></span>
+                </div>
+                <div class="monitor-model-tag">
+                  MODEL: NEXA-CORE-4.0-ULTRA
+                </div>
+              </div>
+
+              <!-- Terminal Prompt Simulation Area -->
+              <div class="inference-prompt-box">
+                <div class="prompt-query">
+                  <span>nexainference://cluster-us-east/eval</span>
+                  <span class="tabular-num">21:39:40 UTC</span>
+                </div>
+                <div class="inference-output-live">
+                  &gt; Tensor routing synthesized across 4,096 H100 nodes. Multimodal cross-attention verified with 99.98% certainty.<span class="cursor-blink"></span>
+                </div>
+              </div>
+
+              <!-- Pure-CSS Waveform Visualizer (16 Equalizer Bars) -->
+              <div class="waveform-visualizer">
+                <span class="waveform-label">KV-CACHE REALTIME TENSOR FREQUENCY</span>
+                <div class="bars-cluster" aria-hidden="true">
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                </div>
+              </div>
+
+              <!-- Telemetry Metrics Grid -->
+              <div class="monitor-telemetry-grid">
+                <div class="telemetry-cell">
+                  <span class="t-lbl">TOKEN VELOCITY</span>
+                  <span class="t-val tabular-num">218 t/s</span>
+                </div>
+                <div class="telemetry-cell">
+                  <span class="t-lbl">TIME-TO-FIRST-BYTE</span>
+                  <span class="t-val tabular-num text-teal">12.4ms</span>
+                </div>
+                <div class="telemetry-cell">
+                  <span class="t-lbl">ROUTING CONFIDENCE</span>
+                  <span class="t-val tabular-num text-indigo">99.99%</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. INFINITE CAPABILITY STRIP (EDGE-FADED CONTINUOUS MARQUEE)
+         ======================================================================= -->
+    <section class="marquee-section" aria-label="Capabilities Marquee">
+      <div class="marquee-mask">
+        <!-- Dual tracks for seamless infinite looping without stutter -->
+        <div class="marquee-track">
+          <div class="marquee-item"><span class="marquee-badge">LATENCY</span> SUB-20MS DISTRIBUTED INFERENCE</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">REASONING</span> MULTIMODAL CROSS-ATTENTION 4.0</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">ENCRYPTION</span> ZERO-TRUST HOMOMORPHIC PRIVACY</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">AGENTS</span> AUTONOMOUS MULTI-AGENT SWARM MESH</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">SCALE</span> 2.0M TOKEN LOSSLESS CONTEXT</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">FABRIC</span> HARDWARE-ACCELERATED H100 CLUSTERS</div>
+          <span class="marquee-dot">•</span>
+        </div>
+
+        <div class="marquee-track" aria-hidden="true">
+          <div class="marquee-item"><span class="marquee-badge">LATENCY</span> SUB-20MS DISTRIBUTED INFERENCE</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">REASONING</span> MULTIMODAL CROSS-ATTENTION 4.0</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">ENCRYPTION</span> ZERO-TRUST HOMOMORPHIC PRIVACY</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">AGENTS</span> AUTONOMOUS MULTI-AGENT SWARM MESH</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">SCALE</span> 2.0M TOKEN LOSSLESS CONTEXT</div>
+          <span class="marquee-dot">•</span>
+          <div class="marquee-item"><span class="marquee-badge">FABRIC</span> HARDWARE-ACCELERATED H100 CLUSTERS</div>
+          <span class="marquee-dot">•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. AI PRODUCTS SHOWCASE (3-COLUMN GRID WITH BORDER-BEAM GLOWS)
+         ======================================================================= -->
+    <section id="products" class="section-wrap" aria-labelledby="products-title">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header text-center">
+          <div class="telemetry-pill">
+            <span class="pill-beacon"></span>
+            <span>Flagship Foundations</span>
+          </div>
+          <h2 id="products-title" class="section-title">
+            Architected for High-Impact Scale.
+          </h2>
+          <p class="section-subtitle">
+            Three core autonomous intelligence platforms engineered to seamlessly integrate with your existing data warehouses, API gateways, and edge nodes.
+          </p>
+        </div>
+
+        <!-- 3-Column Product Cards Grid -->
+        <div class="products-grid">
+          
+          <!-- Product Card 1: NexaCore LLM -->
+          <article class="product-card">
+            <div class="product-header">
+              <div class="product-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <span class="product-badge-version">v4.2 PRO</span>
+            </div>
+            <h3 class="product-name">NexaCore LLM</h3>
+            <p class="product-summary">
+              Next-generation frontier language engine with deep mathematical reasoning, live code synthesis, and sub-15ms time-to-first-token throughput.
+            </p>
+            <ul class="product-features-list">
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>2M token lossless continuous context</span>
+              </li>
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Speculative decoding with 3.2x acceleration</span>
+              </li>
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>On-premise air-gapped deployment option</span>
+              </li>
+            </ul>
+            <a href="#contact" class="product-card-link">
+              <span>Explore Architecture</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Product Card 2: PulseVision -->
+          <article class="product-card">
+            <div class="product-header">
+              <div class="product-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <span class="product-badge-version">v3.8 TENSOR</span>
+            </div>
+            <h3 class="product-name">PulseVision</h3>
+            <p class="product-summary">
+              High-velocity spatial-temporal perception engine capable of parsing 4K 120fps video streams, CT scans, and satellite imagery at microsecond latencies.
+            </p>
+            <ul class="product-features-list">
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Sub-frame pixel segmentation & 3D bounding</span>
+              </li>
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Zero-shot object classification across 100k classes</span>
+              </li>
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Direct TensorRT edge acceleration compatibility</span>
+              </li>
+            </ul>
+            <a href="#contact" class="product-card-link">
+              <span>Explore Architecture</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Product Card 3: AutoFlow Agents -->
+          <article class="product-card">
+            <div class="product-header">
+              <div class="product-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <span class="product-badge-version">v5.0 SWARM</span>
+            </div>
+            <h3 class="product-name">AutoFlow Agents</h3>
+            <p class="product-summary">
+              Deterministic autonomous agent framework that orchestrates multi-step DevOps, financial reconciliation, and database migrations with verification loops.
+            </p>
+            <ul class="product-features-list">
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Self-correcting recursive execution loops</span>
+              </li>
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Cryptographic audit trail for every action taken</span>
+              </li>
+              <li class="product-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Native LangChain, LlamaIndex, & REST hooks</span>
+              </li>
+            </ul>
+            <a href="#contact" class="product-card-link">
+              <span>Explore Architecture</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. REAL-WORLD APPLICATIONS (ASYMMETRIC BENTO GRID)
+         ======================================================================= -->
+    <section id="applications" class="section-wrap" aria-labelledby="apps-title">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header text-center">
+          <div class="telemetry-pill">
+            <span class="pill-beacon"></span>
+            <span>Mission-Critical Impact</span>
+          </div>
+          <h2 id="apps-title" class="section-title">
+            Engineered for Planetary Scale.
+          </h2>
+          <p class="section-subtitle">
+            See how NexaMind's cognitive engine transforms mission-critical infrastructure across medicine, global logistics, and defense.
+          </p>
+        </div>
+
+        <!-- Asymmetric Bento Grid -->
+        <div class="bento-grid">
+          
+          <!-- Bento Card 1: Healthcare Diagnostics (Spans 2 columns on desktop) -->
+          <article class="bento-card bento-span-2">
+            <span class="bento-badge">HEALTHCARE DIAGNOSTICS</span>
+            <h3 class="bento-title">Sub-Cellular Pathology & Genomic Synthesis</h3>
+            <p class="bento-desc">
+              Hospitals utilize PulseVision to analyze MRI volumetric scans and genomic sequencing data in real time, detecting micro-tumors months earlier than manual radiology with 99.4% cross-validated accuracy.
+            </p>
+            
+            <!-- Micro-Visual: Live Bio-Signal ECG & SpO2 Waveform -->
+            <div class="bento-visual-box">
+              <div class="bio-signal-row">
+                <span class="t-lbl">MULTI-SPECTRAL BIO-TELEMETRY</span>
+                <span class="bio-metric-val">SYNCED: 99.8% (0.4ms)</span>
+              </div>
+              <svg class="bio-wave-svg" viewBox="0 0 500 50" preserveAspectRatio="none">
+                <path class="bio-wave-path" d="M0 25 L80 25 L90 12 L100 40 L110 5 L120 38 L130 25 L240 25 L250 12 L260 40 L270 5 L280 38 L290 25 L400 25 L410 12 L420 40 L430 5 L440 38 L450 25 L500 25" fill="none" stroke="#14B8A6" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </article>
+
+          <!-- Bento Card 2: Autonomous Security -->
+          <article class="bento-card">
+            <span class="bento-badge">DEFENSE & ZERO-TRUST</span>
+            <h3 class="bento-title">Autonomous Threat Shield</h3>
+            <p class="bento-desc">
+              Continuous threat-hunting across millions of perimeter nodes with automatic zero-day patch synthesis in under 4 seconds.
+            </p>
+            
+            <!-- Micro-Visual: Radar Scope -->
+            <div class="bento-visual-box text-center">
+              <div class="radar-scope-mini" aria-hidden="true">
+                <div class="radar-sweep-beam"></div>
+                <div class="radar-target-dot" style="top: 30%; left: 65%;"></div>
+                <div class="radar-target-dot" style="top: 70%; left: 35%; animation-delay: 0.8s;"></div>
+              </div>
+              <span class="t-lbl text-center" style="margin-top: 8px;">ZERO INTRUSIONS DETECTED</span>
+            </div>
+          </article>
+
+          <!-- Bento Card 3: Enterprise Automation -->
+          <article class="bento-card">
+            <span class="bento-badge">ENTERPRISE AGENTS</span>
+            <h3 class="bento-title">Autonomous ERP Workflows</h3>
+            <p class="bento-desc">
+              Decentralized agents reconcile millions of cross-border financial transactions and trigger audit compliance trees autonomously.
+            </p>
+            
+            <!-- Micro-Visual: Node Graph -->
+            <div class="bento-visual-box">
+              <div class="node-graph-stage" aria-hidden="true">
+                <div class="graph-connector-line"></div>
+                <div class="graph-node">API</div>
+                <div class="graph-node" style="border-color: var(--color-teal); color: var(--color-teal-light);">AI</div>
+                <div class="graph-node">ERP</div>
+              </div>
+              <span class="t-lbl text-center">RECONCILIATION SPEED: 1.2M OPS/SEC</span>
+            </div>
+          </article>
+
+          <!-- Bento Card 4: Predictive Analytics (Spans 2 columns on desktop) -->
+          <article class="bento-card bento-span-2">
+            <span class="bento-badge">FINANCIAL INTELLIGENCE</span>
+            <h3 class="bento-title">Predictive Macro-Economic Volatility Modeling</h3>
+            <p class="bento-desc">
+              Processing 40 million global supply chain signals simultaneously to forecast commodity bottlenecks, freight price swings, and liquidity anomalies before traditional indices register market movements.
+            </p>
+
+            <!-- Micro-Visual: Animated Predictive Bar Chart -->
+            <div class="bento-visual-box">
+              <div class="bio-signal-row">
+                <span class="t-lbl">CONFIDENCE INTERVAL: 99.4% (Q4 FORECAST)</span>
+                <span class="bio-metric-val">+28.4% EFFICIENCY</span>
+              </div>
+              <div class="trend-bars-wrapper" aria-hidden="true">
+                <div class="trend-col col-1" title="Node A"></div>
+                <div class="trend-col col-2" title="Node B"></div>
+                <div class="trend-col col-3" title="Node C"></div>
+                <div class="trend-col col-4" title="Node D"></div>
+                <div class="trend-col col-5" title="Node E"></div>
+                <div class="trend-col col-6" title="Node F"></div>
+                <div class="trend-col col-7" title="Node G"></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. TECHNOLOGY & ARCHITECTURE OVERVIEW
+         ======================================================================= -->
+    <section id="architecture" class="section-wrap architecture-section" aria-labelledby="arch-title">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header text-center">
+          <div class="telemetry-pill">
+            <span class="pill-beacon"></span>
+            <span>Systems Engineering</span>
+          </div>
+          <h2 id="arch-title" class="section-title">
+            Distributed Tensor Infrastructure.
+          </h2>
+          <p class="section-subtitle">
+            Engineered from silicon to software layer for bare-metal performance, deterministic low latencies, and mathematically proven privacy guarantees.
+          </p>
+        </div>
+
+        <!-- High-Impact Tabular Metric Strip -->
+        <div class="metrics-bar-grid">
+          <div class="metric-cell">
+            <span class="metric-value tabular-num">99.99%</span>
+            <span class="metric-title">Guaranteed Uptime</span>
+            <span class="metric-sub">Multi-region active-active cluster</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-value tabular-num text-teal">14ms</span>
+            <span class="metric-title">Global Median Latency</span>
+            <span class="metric-sub">Anycast edge inference routing</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-value tabular-num text-indigo">10x</span>
+            <span class="metric-title">Compute Efficiency</span>
+            <span class="metric-sub">Speculative 4-bit quantization</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-value tabular-num">SOC2</span>
+            <span class="metric-title">Type II Certified</span>
+            <span class="metric-sub">Zero data retention guarantee</span>
+          </div>
+        </div>
+
+        <!-- 2-Column Architectural Breakdown -->
+        <div class="arch-split-grid">
+          
+          <div class="arch-card">
+            <div class="arch-card-tag">PILLAR 01 // COMPUTE FABRIC</div>
+            <h3 class="arch-card-title">Neural Compute Mesh</h3>
+            <p class="arch-card-body">
+              Rather than centralizing workloads into fragile monolithic clusters, NexaMind pools tens of thousands of H100 and B200 Tensor Core GPUs into a unified Anycast mesh that balances matrix multiplication dynamically based on regional electrical grid green margins.
+            </p>
+            <div class="spec-table-list">
+              <div class="spec-table-row">
+                <span class="spec-label">INTERCONNECT</span>
+                <span class="spec-val">3.2 Tbps NVIDIA Quantum-2 InfiniBand</span>
+              </div>
+              <div class="spec-table-row">
+                <span class="spec-label">MEMORY BANDWIDTH</span>
+                <span class="spec-val">3.35 TB/s per GPU Node</span>
+              </div>
+              <div class="spec-table-row">
+                <span class="spec-label">FAULT RECOVERY</span>
+                <span class="spec-val">&lt; 180ms Checkpoint Hot-Swap</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="arch-card">
+            <div class="arch-card-tag">PILLAR 02 // PRIVACY CRYPTOGRAPHY</div>
+            <h3 class="arch-card-title">Zero-Knowledge Enclaves</h3>
+            <p class="arch-card-body">
+              Client prompts, proprietary weights, and completion tokens remain completely encrypted inside hardware-attested Confidential Computing enclaves. Even with physical access to raw memory buses, no third party can inspect plain text data.
+            </p>
+            <div class="spec-table-list">
+              <div class="spec-table-row">
+                <span class="spec-label">ENCRYPTION PROTOCOL</span>
+                <span class="spec-val">AES-256-GCM + Kyber-1024 Quantum</span>
+              </div>
+              <div class="spec-table-row">
+                <span class="spec-label">ATTESTATION</span>
+                <span class="spec-val">Cryptographic TPM 2.0 Hardware Proof</span>
+              </div>
+              <div class="spec-table-row">
+                <span class="spec-label">DATA RESIDENCY</span>
+                <span class="spec-val">Strictly Sovereign Regional Compliance</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. LEADERSHIP & RESEARCH TEAM
+         ======================================================================= -->
+    <section id="research" class="section-wrap" aria-labelledby="team-title">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header text-center">
+          <div class="telemetry-pill">
+            <span class="pill-beacon"></span>
+            <span>Pioneering Minds</span>
+          </div>
+          <h2 id="team-title" class="section-title">
+            Leadership & Research Fellows.
+          </h2>
+          <p class="section-subtitle">
+            Alumni from DeepMind, Stanford AI Lab, MIT CSAIL, and Bell Labs pioneering the next frontier of deterministic neural reasoning.
+          </p>
+        </div>
+
+        <!-- 4-Column Team Profiles Grid -->
+        <div class="team-grid">
+          
+          <!-- Member 1 -->
+          <article class="team-card">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Dr. Aris Thorne" class="team-photo" loading="lazy">
+              <div class="team-photo-overlay"></div>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Dr. Aris Thorne</h3>
+              <span class="team-role">Chief AI Scientist & Co-Founder</span>
+              <p class="team-bio">
+                Former DeepMind Fellow. 14+ years in transformer memory compression and self-supervised reasoning topologies.
+              </p>
+              <div class="team-social-row">
+                <a href="#research" class="team-social-link">arXiv</a>
+                <a href="#research" class="team-social-link">GitHub</a>
+                <a href="#research" class="team-social-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 2 -->
+          <article class="team-card">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Marcus Vance" class="team-photo" loading="lazy">
+              <div class="team-photo-overlay"></div>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Marcus Vance</h3>
+              <span class="team-role">VP of Distributed Systems</span>
+              <p class="team-bio">
+                Ex-Google Brain infrastructure lead. Designed Petabyte-scale distributed training fabrics with zero tail latency.
+              </p>
+              <div class="team-social-row">
+                <a href="#research" class="team-social-link">GitHub</a>
+                <a href="#research" class="team-social-link">LinkedIn</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 3 -->
+          <article class="team-card">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Dr. Elena Chen" class="team-photo" loading="lazy">
+              <div class="team-photo-overlay"></div>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Dr. Elena Chen</h3>
+              <span class="team-role">Head of Multimodal Perception</span>
+              <p class="team-bio">
+                Ph.D. Stanford Vision Lab. Specializes in low-bit spatial quantization and real-time robotic sensor fusion.
+              </p>
+              <div class="team-social-row">
+                <a href="#research" class="team-social-link">arXiv</a>
+                <a href="#research" class="team-social-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Member 4 -->
+          <article class="team-card">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Devon Kael" class="team-photo" loading="lazy">
+              <div class="team-photo-overlay"></div>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Devon Kael</h3>
+              <span class="team-role">Director of Zero-Trust Security</span>
+              <p class="team-bio">
+                Former cryptographic architect at Signal Foundation. Pioneer of post-quantum homomorphic enclaves.
+              </p>
+              <div class="team-social-row">
+                <a href="#research" class="team-social-link">PGP Key</a>
+                <a href="#research" class="team-social-link">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         8. SPLIT CONTACT & ENTERPRISE INQUIRY SECTION
+         ======================================================================= -->
+    <section id="contact" class="section-wrap" aria-labelledby="contact-title">
+      <div class="container">
+        
+        <div class="contact-split-grid">
+          
+          <!-- Left Telemetry & Global Operations Column -->
+          <div class="contact-telemetry-col">
+            <div>
+              <div class="telemetry-pill">
+                <span class="pill-beacon"></span>
+                <span>Enterprise Onboarding</span>
+              </div>
+              <h2 id="contact-title" class="section-title">
+                Deploy Dedicated Neural Nodes.
+              </h2>
+              <p class="section-subtitle">
+                Partner directly with our senior infrastructure architects to integrate sub-20ms private endpoints into your production environments.
+              </p>
+            </div>
+
+            <!-- Telemetry Office Status Card -->
+            <div class="telemetry-office-card">
+              <div class="office-row">
+                <span class="office-k">GLOBAL HEADQUARTERS</span>
+                <span class="office-v">San Francisco, CA (USA)</span>
+              </div>
+              <div class="office-row">
+                <span class="office-k">EUROPEAN DATA LAB</span>
+                <span class="office-v">Zurich, Switzerland</span>
+              </div>
+              <div class="office-row">
+                <span class="office-k">DIRECT INQUIRIES</span>
+                <span class="office-v text-teal">enterprise@nexamind.ai</span>
+              </div>
+              <div class="office-row">
+                <span class="office-k">SECURITY PGP FINGERPRINT</span>
+                <span class="office-v tabular-num">4A9F 882B C011 D76E</span>
+              </div>
+            </div>
+
+            <!-- SLA Response Badge -->
+            <div class="response-sla-badge">
+              <span class="dot-live-green"></span>
+              <span>AVERAGE ENTERPRISE SLA RESPONSE: &lt; 15 MINUTES</span>
+            </div>
+          </div>
+
+          <!-- Right Floating Glassmorphic Contact Form -->
+          <div class="contact-form-card">
+            <h3 class="form-title">Request Enterprise Cluster Access</h3>
+            <p class="form-subtitle">Fill out the telemetry form below to initiate dedicated VPC provisioning.</p>
+            
+            <form class="form-stack" action="#inquiry-received" method="get">
+              
+              <div class="form-row-2col">
+                <div class="form-group">
+                  <label for="contact-name" class="form-label">FULL NAME</label>
+                  <input type="text" id="contact-name" name="name" required placeholder="Elena Rostova" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">CORPORATE EMAIL</label>
+                  <input type="email" id="contact-email" name="email" required placeholder="elena@enterprise.com" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-row-2col">
+                <div class="form-group">
+                  <label for="contact-company" class="form-label">ORGANIZATION</label>
+                  <input type="text" id="contact-company" name="company" required placeholder="Acme Autonomous Corp" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="contact-tier" class="form-label">PROJECTED TOKEN SCALE</label>
+                  <select id="contact-tier" name="tier" class="form-select">
+                    <option value="10m-50m">10M – 50M tokens / month</option>
+                    <option value="50m-500m" selected>50M – 500M tokens / month</option>
+                    <option value="500m-plus">500M+ tokens / month (Dedicated H100)</option>
+                    <option value="air-gapped">Air-Gapped Sovereign Cluster</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">INTEGRATION SPECIFICATIONS / USE CASE</label>
+                <textarea id="contact-message" name="message" required placeholder="Describe your architecture, latency constraints, and deployment timeline..." class="form-textarea"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-lg">
+                <span>Submit Enterprise Request</span>
+                <span aria-hidden="true">→</span>
+              </button>
+
+              <span class="form-note">
+                Protected by mutual NDA and Zero-Retention Privacy Policy.
+              </span>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       9. MINIMALIST FOOTER
+       ========================================================================= -->
+  <footer class="site-footer" aria-label="Site Footer">
+    <div class="container">
+      
+      <!-- Top Column Grid -->
+      <div class="footer-top-grid">
+        
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <div class="brand-logo-link">
+            <div class="brand-mark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#F8FAFC" stroke-width="2"/>
+                <path d="M2 17L12 22L22 17" stroke="#14B8A6" stroke-width="2"/>
+                <path d="M2 12L12 17L22 12" stroke="#6366F1" stroke-width="2"/>
+              </svg>
+            </div>
+            <span class="brand-title">NexaMind<span>.AI</span></span>
+          </div>
+          <p class="footer-desc">
+            Autonomous neural intelligence systems engineered for sub-20ms multi-modal reasoning and confidential enterprise computing.
+          </p>
+          <div class="footer-status-card">
+            <span class="dot-live-green"></span>
+            <span>ALL GLOBAL CLUSTERS OPERATIONAL</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Products -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Neural Platforms</h4>
+          <ul class="footer-links-list">
+            <li><a href="#products" class="footer-link">NexaCore LLM 4.2</a></li>
+            <li><a href="#products" class="footer-link">PulseVision Engine</a></li>
+            <li><a href="#products" class="footer-link">AutoFlow Agents</a></li>
+            <li><a href="#architecture" class="footer-link">Anycast Mesh</a></li>
+            <li><a href="#architecture" class="footer-link">Zero-Knowledge Enclaves</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Research -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Research & Trust</h4>
+          <ul class="footer-links-list">
+            <li><a href="#research" class="footer-link">Research Fellows</a></li>
+            <li><a href="#architecture" class="footer-link">arXiv Publications</a></li>
+            <li><a href="#architecture" class="footer-link">Security Whitepaper</a></li>
+            <li><a href="#architecture" class="footer-link">SOC2 Type II Audit</a></li>
+            <li><a href="#contact" class="footer-link">Responsible AI Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Corporate & Developer -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Developer & Ops</h4>
+          <ul class="footer-links-list">
+            <li><a href="#hero" class="footer-link">Interactive Playground</a></li>
+            <li><a href="#contact" class="footer-link">Enterprise Gateway</a></li>
+            <li><a href="#contact" class="footer-link">Telemetry Status</a></li>
+            <li><a href="#contact" class="footer-link">Privacy Terms</a></li>
+            <li><a href="#contact" class="footer-link">Contact Support</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <span class="copyright-text">
+          © 2026 NexaMind AI Technologies Inc. All distributed neural weights and architecture patents reserved.
+        </span>
+        <div class="footer-cert-badges">
+          <span class="cert-pill">SOC2 TYPE II</span>
+          <span class="cert-pill">ISO 27001</span>
+          <span class="cert-pill">HIPAA READY</span>
+          <span class="cert-pill">GDPR COMPLIANT</span>
+          <span class="cert-pill">CCPA VALIDATED</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
